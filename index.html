@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>АНО ДПО «Энергия заботы и творчества» — обучение для медицинских клиник</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --orange:#F47A1F;
+  --orange-deep:#E0660C;
+  --orange-soft:#FFF1E3;
+  --green:#2E9E5B;
+  --green-deep:#218049;
+  --green-soft:#EAF6EE;
+  --ink:#20262C;
+  --ink-soft:#465058;
+  --muted:#7B868F;
+  --line:#ECE6DE;
+  --cream:#FBF6EF;
+  --cream-deep:#F5EEE3;
+  --white:#FFFFFF;
+  --shadow-sm:0 2px 10px rgba(40,30,15,.05);
+  --shadow:0 18px 50px -22px rgba(60,40,15,.28);
+  --shadow-card:0 12px 34px -18px rgba(60,40,15,.30);
+  --r-lg:28px;
+  --r-md:20px;
+  --r-sm:14px;
+  --maxw:1180px;
+  --nav-h:78px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;scroll-padding-top:96px;}
+body{
+  margin:0;
+  overflow-x:hidden;
+  font-family:"Montserrat",system-ui,sans-serif;
+  color:var(--ink);
+  background:var(--cream);
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+h1,h2,h3,h4{margin:0;line-height:1.12;font-weight:700;letter-spacing:-.01em;text-wrap:balance;}
+p{margin:0;}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--orange-deep);
+}
+.eyebrow.green{color:var(--green-deep);}
+.eyebrow::before{content:"";width:26px;height:2px;border-radius:2px;background:currentColor;}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:inherit;font-weight:700;font-size:16px;
+  padding:15px 28px;border-radius:999px;border:none;cursor:pointer;
+  transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+  white-space:nowrap;
+}
+.btn-primary{background:var(--orange);color:#fff;box-shadow:0 14px 26px -12px rgba(244,122,31,.7);}
+.btn-primary:hover{background:var(--orange-deep);transform:translateY(-2px);box-shadow:0 18px 30px -12px rgba(224,102,12,.8);}
+.btn-ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line);}
+.btn-ghost:hover{border-color:var(--orange);color:var(--orange-deep);transform:translateY(-2px);}
+.btn-green{background:var(--green);color:#fff;box-shadow:0 14px 26px -12px rgba(46,158,91,.6);}
+.btn-green:hover{background:var(--green-deep);transform:translateY(-2px);}
+.btn-sm{padding:11px 20px;font-size:15px;}
+
+/* ---------- header ---------- */
+header.site{
+  position:sticky;top:0;z-index:60;
+  background:rgba(251,246,239,.86);
+  backdrop-filter:saturate(140%) blur(12px);
+  border-bottom:1px solid transparent;
+  transition:border-color .25s ease, box-shadow .25s ease, background .25s ease;
+}
+header.site.scrolled{border-color:var(--line);box-shadow:var(--shadow-sm);background:rgba(255,253,250,.94);}
+.nav{display:flex;align-items:center;gap:18px;height:var(--nav-h);}
+.brand{display:flex;align-items:center;gap:13px;flex-shrink:0;}
+.brand img{height:48px;width:auto;}
+.brand .bname{display:none;}
+.nav-links{display:flex;align-items:center;gap:2px;margin-left:2px;}
+.nav-links a{
+  font-size:14.5px;font-weight:600;color:var(--ink-soft);
+  padding:9px 11px;border-radius:10px;transition:color .15s,background .15s;white-space:nowrap;
+}
+.nav-links a:hover{color:var(--orange-deep);background:var(--orange-soft);}
+.nav-links a.active{color:var(--orange-deep);}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:14px;}
+.nav-phone{font-weight:700;font-size:15.5px;white-space:nowrap;display:flex;align-items:center;gap:8px;}
+.nav-phone svg{color:var(--green);}
+.burger{display:none;width:46px;height:46px;border-radius:12px;border:1.5px solid var(--line);background:#fff;cursor:pointer;align-items:center;justify-content:center;}
+.burger svg{width:22px;height:22px;}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;padding:64px 0 78px;}
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(560px 380px at 88% -8%, rgba(244,122,31,.13), transparent 60%),
+    radial-gradient(520px 420px at 6% 108%, rgba(46,158,91,.12), transparent 60%);
+}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center;}
+.hero h1{font-size:clamp(34px,4.4vw,56px);font-weight:800;letter-spacing:-.02em;}
+.hero h1 .hl{color:var(--orange);position:relative;white-space:nowrap;}
+.hero h1 .hl-green{color:var(--green-deep);}
+.hero-lead{margin-top:22px;font-size:19px;color:var(--ink-soft);max-width:540px;}
+.hero-cta{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap;}
+.hero-stats{margin-top:40px;display:flex;gap:14px;flex-wrap:wrap;}
+.stat{
+  background:#fff;border:1px solid var(--line);border-radius:var(--r-md);
+  padding:16px 20px;box-shadow:var(--shadow-sm);min-width:124px;
+}
+.stat b{display:block;font-size:26px;font-weight:800;letter-spacing:-.02em;}
+.stat .o{color:var(--orange);}
+.stat .g{color:var(--green-deep);}
+.stat span{font-size:13.5px;color:var(--muted);font-weight:600;}
+/* hero art */
+.hero-art{position:relative;padding:30px 0 26px;}
+.hero-card{
+  background:#fff;border-radius:var(--r-lg);box-shadow:var(--shadow);
+  padding:30px 30px 26px;position:relative;border:1px solid var(--line);
+}
+.hero-card .pill{
+  display:inline-flex;align-items:center;gap:8px;background:var(--green-soft);color:var(--green-deep);
+  font-weight:700;font-size:13px;padding:7px 13px;border-radius:999px;
+}
+.hero-card h3{font-size:22px;margin-top:16px;font-weight:700;}
+.hero-card p{color:var(--ink-soft);font-size:15px;margin-top:8px;}
+.hero-rows{margin-top:20px;display:flex;flex-direction:column;gap:11px;}
+.hero-row{display:flex;align-items:center;gap:12px;font-size:15px;font-weight:600;}
+.hero-row .ic{width:34px;height:34px;border-radius:10px;background:var(--orange-soft);color:var(--orange-deep);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.hero-row .ic.g{background:var(--green-soft);color:var(--green-deep);}
+.hero-float{
+  position:absolute;z-index:3;background:#fff;border:1px solid var(--line);border-radius:16px;
+  box-shadow:var(--shadow-card);padding:12px 16px;font-weight:700;font-size:14px;display:flex;align-items:center;gap:10px;
+}
+.hero-float.f1{top:0;right:14px;color:var(--orange-deep);}
+.hero-float.f2{bottom:-68px;left:-14px;color:var(--green-deep);}
+.hero-float .dot{width:9px;height:9px;border-radius:50%;background:currentColor;}
+
+/* ---------- section frame ---------- */
+section{padding:84px 0;}
+.section-head{max-width:720px;margin-bottom:46px;}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+.section-head h2{font-size:clamp(28px,3.3vw,42px);font-weight:800;margin-top:14px;letter-spacing:-.02em;}
+.section-head p{margin-top:16px;font-size:18px;color:var(--ink-soft);}
+.bg-white{background:var(--white);}
+.bg-cream{background:var(--cream-deep);}
+
+/* ---------- programs ---------- */
+.prog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.prog{
+  background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:30px 28px;display:flex;flex-direction:column;position:relative;overflow:hidden;
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.prog::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--orange);}
+.prog:nth-child(2)::before{background:var(--green);}
+.prog:hover{transform:translateY(-6px);box-shadow:var(--shadow-card);border-color:transparent;}
+.prog .tag{display:inline-flex;align-self:flex-start;gap:7px;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--orange-deep);background:var(--orange-soft);padding:6px 12px;border-radius:999px;}
+.prog:nth-child(2) .tag{color:var(--green-deep);background:var(--green-soft);}
+.prog h3{font-size:21px;margin-top:18px;font-weight:700;}
+.prog .desc{margin-top:12px;color:var(--ink-soft);font-size:15px;flex-grow:1;}
+.prog .meta{margin-top:20px;display:flex;gap:8px;flex-wrap:wrap;}
+.prog .meta span{font-size:13.5px;font-weight:600;color:var(--ink-soft);background:var(--cream);border:1px solid var(--line);border-radius:999px;padding:6px 13px;display:inline-flex;align-items:center;gap:7px;}
+.prog .pricerow{margin-top:22px;padding-top:22px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:14px;}
+.prog .price{font-size:25px;font-weight:800;letter-spacing:-.02em;}
+.prog .price small{display:block;font-size:12px;font-weight:600;color:var(--muted);letter-spacing:0;}
+
+/* ---------- about / values ---------- */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+.values{display:flex;flex-direction:column;gap:16px;}
+.value{display:flex;gap:18px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:22px 24px;box-shadow:var(--shadow-sm);}
+.value .vic{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.value h4{font-size:18px;font-weight:700;}
+.value p{margin-top:6px;color:var(--ink-soft);font-size:15px;}
+.about-copy h2{font-size:clamp(28px,3.2vw,40px);font-weight:800;margin-top:14px;letter-spacing:-.02em;}
+.about-copy p{margin-top:18px;font-size:18px;color:var(--ink-soft);}
+.mission-card{margin-top:26px;background:var(--orange-soft);border-radius:var(--r-md);padding:24px 26px;border:1px solid #f6dcc2;}
+.mission-card .q{font-size:18px;font-weight:600;font-style:italic;color:var(--ink);text-align:center;}
+
+/* ---------- eios ---------- */
+.eios{background:linear-gradient(180deg,var(--green-deep),#1c6e40);color:#fff;border-radius:36px;overflow:hidden;position:relative;}
+.eios-inner{position:relative;z-index:1;padding:60px 56px;display:grid;grid-template-columns:1fr 1.1fr;gap:50px;align-items:center;}
+.eios .eyebrow{color:#ffd9b5;}
+.eios h2{font-size:clamp(27px,3vw,38px);font-weight:800;margin-top:14px;color:#fff;}
+.eios .lead{margin-top:18px;font-size:17px;color:rgba(255,255,255,.85);}
+.eios-feats{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.efeat{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);border-radius:var(--r-md);padding:22px;backdrop-filter:blur(4px);}
+.efeat .ei{width:44px;height:44px;border-radius:12px;background:var(--orange);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+.efeat h4{font-size:16.5px;font-weight:700;color:#fff;}
+.efeat p{margin-top:7px;font-size:14px;color:rgba(255,255,255,.8);line-height:1.5;}
+
+/* ---------- teachers ---------- */
+.teach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.teacher{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .2s,box-shadow .2s;}
+.teacher:hover{transform:translateY(-5px);box-shadow:var(--shadow-card);}
+.teacher .ph{aspect-ratio:4/4.4;overflow:hidden;background:var(--cream-deep);}
+.teacher .ph img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+.teacher .body{padding:22px 24px 26px;}
+.teacher .name{font-size:20px;font-weight:700;}
+.teacher .role{margin-top:8px;font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--orange-deep);line-height:1.4;}
+.teacher .bio{margin-top:12px;color:var(--ink-soft);font-size:14.5px;}
+
+/* ---------- сведения / accordions ---------- */
+.svedenia-grid{display:grid;grid-template-columns:300px 1fr;gap:40px;align-items:start;}
+.sved-aside{position:sticky;top:100px;}
+.sved-aside .note{background:var(--orange-soft);border:1px solid #f6dcc2;border-radius:var(--r-md);padding:22px 24px;}
+.sved-aside .note h4{font-size:16px;font-weight:700;display:flex;gap:10px;align-items:center;}
+.sved-aside .note p{margin-top:10px;font-size:14px;color:var(--ink-soft);}
+.sved-aside .note .law{margin-top:14px;font-size:12.5px;color:var(--muted);font-weight:600;}
+.accordions{display:flex;flex-direction:column;gap:12px;}
+.acc{background:#fff;border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;transition:box-shadow .2s,border-color .2s;}
+.acc.open{box-shadow:var(--shadow-card);border-color:#f0d9c0;}
+.acc-head{width:100%;display:flex;align-items:center;gap:16px;padding:20px 24px;background:none;border:none;cursor:pointer;text-align:left;font-family:inherit;}
+.acc-num{font-size:13px;font-weight:800;color:var(--orange);width:28px;flex-shrink:0;}
+.acc-title{font-size:17px;font-weight:700;flex-grow:1;color:var(--ink);}
+.acc-icon{width:30px;height:30px;border-radius:50%;background:var(--cream-deep);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s,transform .25s;}
+.acc.open .acc-icon{background:var(--orange);transform:rotate(45deg);}
+.acc.open .acc-icon svg{color:#fff;}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.acc-body .inner{padding:6px 24px 26px 68px;color:var(--ink-soft);font-size:15px;}
+.acc-body .inner ul{margin:0;padding-left:20px;}
+.acc-body .inner li{margin-bottom:7px;}
+.acc-body .inner p{margin:0 0 0 0;}\n.acc-body .inner p:first-child{margin-top:0;}\n.acc-body .inner p+p{margin-top:12px;}
+.doc-list{list-style:none;padding:0;margin:14px 0 0;display:flex;flex-direction:column;gap:8px;}
+.doc-list a{display:flex;align-items:center;gap:11px;padding:11px 15px;background:var(--cream);border:1px solid var(--line);border-radius:12px;font-size:14.5px;font-weight:600;color:var(--ink);transition:border-color .15s,color .15s;}
+.doc-list a:hover{border-color:var(--orange);color:var(--orange-deep);}
+.doc-list a svg{color:var(--orange);flex-shrink:0;}
+.doc-list a .ext{margin-left:auto;font-size:12px;color:var(--muted);font-weight:700;}
+.req-table{width:100%;border-collapse:collapse;margin-top:6px;}
+.req-table td{padding:11px 0;border-bottom:1px solid var(--line);font-size:15px;vertical-align:top;}
+.req-table td:first-child{color:var(--muted);font-weight:600;width:42%;}
+.req-table td:last-child{font-weight:600;color:var(--ink);}
+
+/* ---------- contact / form ---------- */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:start;}
+.contact-info h2{font-size:clamp(27px,3vw,40px);font-weight:800;margin-top:14px;}
+.contact-info p{margin-top:16px;font-size:18px;color:var(--ink-soft);}
+.contact-cards{margin-top:30px;display:flex;flex-direction:column;gap:14px;}
+.cc{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:18px 22px;}
+.cc .ci{width:46px;height:46px;border-radius:12px;background:var(--green-soft);color:var(--green-deep);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cc .ci.o{background:var(--orange-soft);color:var(--orange-deep);}
+.cc .lab{font-size:12.5px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.05em;}
+.cc .val{font-size:16px;font-weight:600;margin-top:3px;}
+.form-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:34px 34px 36px;box-shadow:var(--shadow);}
+.form-card h3{font-size:23px;font-weight:800;}
+.form-card .sub{margin-top:10px;color:var(--ink-soft);font-size:15.5px;}
+.field{margin-top:18px;}
+.field label{display:block;font-size:14px;font-weight:700;margin-bottom:7px;}
+.field label .req{color:var(--orange);}
+.field input,.field select,.field textarea{
+  width:100%;font-family:inherit;font-size:16px;color:var(--ink);
+  padding:14px 16px;border:1.5px solid var(--line);border-radius:13px;background:var(--cream);
+  transition:border-color .15s,background .15s,box-shadow .15s;
+}
+.field textarea{resize:vertical;min-height:88px;}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--orange);background:#fff;box-shadow:0 0 0 4px rgba(244,122,31,.12);}
+.field.invalid input,.field.invalid select{border-color:#e23b3b;background:#fff5f5;}
+.field .err{display:none;color:#d62e2e;font-size:13px;font-weight:600;margin-top:6px;}
+.field.invalid .err{display:block;}
+.consent{margin-top:18px;display:flex;gap:11px;align-items:flex-start;font-size:13px;color:var(--muted);line-height:1.5;}
+.consent input{width:20px;height:20px;flex-shrink:0;margin-top:1px;accent-color:var(--orange);}
+.form-card .btn{width:100%;margin-top:22px;}
+.form-success{display:none;text-align:center;padding:30px 10px;}
+.form-success.show{display:block;}
+.form-success .sic{width:72px;height:72px;border-radius:50%;background:var(--green-soft);color:var(--green);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;}
+.form-success h3{font-size:23px;}
+.form-success p{margin-top:10px;color:var(--ink-soft);}
+
+/* ---------- footer ---------- */
+footer.site{background:var(--ink);color:rgba(255,255,255,.7);padding:60px 0 30px;}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;}
+footer.site .fbrand img{height:46px;filter:brightness(0) invert(1);opacity:.95;}
+footer.site .fbrand p{margin-top:16px;font-size:14px;max-width:300px;}
+footer.site h5{color:#fff;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:16px;}
+footer.site ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
+footer.site ul a{font-size:14.5px;transition:color .15s;}
+footer.site ul a:hover{color:var(--orange);}
+footer.site .fcontact p{font-size:14.5px;margin-bottom:10px;}
+footer.site .fcontact b{color:#fff;}
+.foot-bottom{margin-top:46px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13px;}
+
+/* ---------- mobile nav ---------- */
+.mobile-menu{position:fixed;inset:0;z-index:80;background:rgba(20,24,28,.5);opacity:0;visibility:hidden;transition:opacity .25s;}
+.mobile-menu.open{opacity:1;visibility:visible;}
+.mobile-panel{position:absolute;top:0;right:0;width:min(360px,86vw);height:100%;background:var(--cream);padding:26px;transform:translateX(100%);transition:transform .3s ease;display:flex;flex-direction:column;gap:6px;overflow-y:auto;}
+.mobile-menu.open .mobile-panel{transform:translateX(0);}
+.mobile-panel .mclose{align-self:flex-end;width:44px;height:44px;border-radius:12px;border:1.5px solid var(--line);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.mobile-panel a{font-size:18px;font-weight:600;padding:13px 8px;border-bottom:1px solid var(--line);}
+.mobile-panel .btn{margin-top:18px;}
+
+/* ---------- motion ---------- */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(28px);}
+  to{opacity:1;transform:translateY(0);}
+}
+@keyframes fadeScale{
+  from{opacity:0;transform:translateY(20px) scale(.96);}
+  to{opacity:1;transform:translateY(0) scale(1);}
+}
+@keyframes floatSoft{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-10px);}
+}
+@keyframes glowPulse{
+  0%,100%{box-shadow:0 14px 26px -12px rgba(244,122,31,.7);}
+  50%{box-shadow:0 18px 38px -12px rgba(244,122,31,.92);}
+}
+.hero .eyebrow,.hero h1,.hero-lead,.hero-cta,.hero-stats{
+  opacity:0;
+  animation:fadeUp .75s cubic-bezier(.22,1,.36,1) forwards;
+}
+.hero .eyebrow{animation-delay:.05s;}
+.hero h1{animation-delay:.14s;}
+.hero-lead{animation-delay:.24s;}
+.hero-cta{animation-delay:.34s;}
+.hero-stats{animation-delay:.44s;}
+.hero-card{
+  opacity:0;
+  animation:fadeScale .85s cubic-bezier(.22,1,.36,1) .28s forwards;
+}
+.hero-float{
+  opacity:0;
+  animation:fadeScale .75s cubic-bezier(.22,1,.36,1) .58s forwards, floatSoft 4.8s ease-in-out 1.4s infinite;
+}
+.hero-float.f2{animation-delay:.72s,1.6s;}
+.hero .btn-primary{animation:glowPulse 3.6s ease-in-out 1.2s infinite;}
+.reveal{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity .72s cubic-bezier(.22,1,.36,1), transform .72s cubic-bezier(.22,1,.36,1);
+  transition-delay:var(--delay,0s);
+  will-change:opacity,transform;
+}
+.reveal.in-view{opacity:1;transform:translateY(0);}
+.prog:hover,.teacher:hover,.value:hover,.cc:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-card);
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms!important;
+    animation-iteration-count:1!important;
+    scroll-behavior:auto!important;
+    transition-duration:.001ms!important;
+  }
+  .reveal,.hero .eyebrow,.hero h1,.hero-lead,.hero-cta,.hero-stats,.hero-card,.hero-float{
+    opacity:1!important;
+    transform:none!important;
+  }
+}
+
+/* ---------- responsive ---------- */
+@media(max-width:1080px){
+  .hero .wrap{grid-template-columns:1fr;gap:40px;}
+  .hero-art{max-width:480px;}
+  .svedenia-grid{grid-template-columns:1fr;}
+  .sved-aside{position:static;}
+  .eios-inner{grid-template-columns:1fr;gap:34px;}
+}
+@media(max-width:1080px){
+  .nav-links,.nav-phone{display:none;}
+  .burger{display:flex;}
+}
+@media(max-width:900px){
+  .prog-grid{grid-template-columns:1fr;}
+  .teach-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto;}
+  .about-grid{grid-template-columns:1fr;gap:36px;}
+  .contact-grid{grid-template-columns:1fr;gap:32px;}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:30px;}
+}
+@media(max-width:560px){
+  body{font-size:16px;}
+  section{padding:58px 0;}
+  .wrap{padding:0 20px;}
+  .eios-inner{padding:38px 26px;}
+  .eios-feats{grid-template-columns:1fr;}
+  .form-card{padding:26px 22px 28px;}
+  .foot-grid{grid-template-columns:1fr;}
+  .acc-body .inner{padding-left:24px;}
+  .hero-float.f2{left:0;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site" id="top">
+  <div class="wrap nav">
+    <a href="#top" class="brand" aria-label="Энергия заботы и творчества">
+      <img src="assets/logo.png" alt="АНО ДПО «Энергия заботы и творчества»" />
+    </a>
+    <nav class="nav-links">
+      <a href="#programs">Программы</a>
+      <a href="#about">Об организации</a>
+      <a href="#eios">ЭИОС</a>
+      <a href="#teachers">Преподаватели</a>
+      <a href="#svedenia">Сведения об организации</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+    <div class="nav-right">
+      <a href="tel:+74951234567" class="nav-phone">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +7 (495) 123-45-67
+      </a>
+      <a href="#contact" class="btn btn-primary btn-sm">Записаться</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Меню">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" style="padding-top:64px;">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Дополнительное профессиональное образование</span>
+      <h1>Раскройте <span class="hl">энергию заботы</span> и&nbsp;<span class="hl-green">творчества</span> в&nbsp;медицинском сервисе</h1>
+      <p class="hero-lead">Обучаем команды медицинских клиник создавать исключительный сервис: от администраторов до руководителей. Онлайн-формат, практикующие эксперты, документ установленного образца.</p>
+      <div class="hero-cta">
+        <a href="#programs" class="btn btn-primary">Выбрать программу</a>
+        <a href="#about" class="btn btn-ghost">Об организации</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b class="o">3</b><span>программы повышения квалификации</span></div>
+        <div class="stat"><b class="g">72–144</b><span>академических часа</span></div>
+        <div class="stat"><b class="o">100%</b><span>дистанционное обучение</span></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="hero-float f1"><span class="dot"></span>Лицензируемая программа ДПО</div>
+      <div class="hero-card">
+        <span class="pill">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          Готовы к дистанту
+        </span>
+        <h3>Электронная образовательная среда</h3>
+        <p>Личный кабинет, вебинары, тесты и электронная библиотека — учитесь в удобном темпе из любой точки.</p>
+        <div class="hero-rows">
+          <div class="hero-row"><span class="ic">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </span>Доступ 24/7 к материалам</div>
+          <div class="hero-row"><span class="ic g">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
+          </span>Поддержка кураторов</div>
+          <div class="hero-row"><span class="ic">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+          </span>Документ установленного образца</div>
+        </div>
+      </div>
+      <div class="hero-float f2"><span class="dot"></span>Практикующие эксперты медицины</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROGRAMS ============ -->
+<section class="bg-white" id="programs">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Программы обучения</span>
+      <h2>Повышение квалификации для команд клиник</h2>
+      <p>Каждая программа реализуется по образовательным программам ДПО с применением дистанционных образовательных технологий. По окончании — удостоверение установленного образца.</p>
+    </div>
+    <div class="prog-grid">
+
+      <article class="prog">
+        <span class="tag">Администратор</span>
+        <h3>Искусство сервиса: администратор медицинской клиники</h3>
+        <p class="desc">Освоение ключевых компетенций администратора: эффективная коммуникация, управление записью, решение конфликтных ситуаций и повышение лояльности пациентов.</p>
+        <div class="meta">
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>72 акад. часа</span>
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>2 недели</span>
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/></svg>Онлайн</span>
+        </div>
+        <div class="pricerow">
+          <div class="price">9 900 ₽<small>за весь курс</small></div>
+          <a href="#contact" class="btn btn-primary btn-sm" data-program="Искусство сервиса: администратор медицинской клиники">Записаться</a>
+        </div>
+      </article>
+
+      <article class="prog">
+        <span class="tag">Руководитель</span>
+        <h3>Управление пациентским опытом и развитие клиники</h3>
+        <p class="desc">Программа для старших администраторов и руководителей. Изучение CJM, внедрение инноваций в сервис, создание эффективной команды администраторов.</p>
+        <div class="meta">
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>144 акад. часа</span>
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>1 месяц</span>
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/></svg>Онлайн</span>
+        </div>
+        <div class="pricerow">
+          <div class="price">14 900 ₽<small>за весь курс</small></div>
+          <a href="#contact" class="btn btn-green btn-sm" data-program="Управление пациентским опытом и развитие клиники">Записаться</a>
+        </div>
+      </article>
+
+      <article class="prog">
+        <span class="tag">Куратор лечения</span>
+        <h3>Куратор лечения: организация и сопровождение пациентского пути</h3>
+        <p class="desc">Освоение ключевых компетенций куратора лечения: координация лечебного процесса, общение с пациентом и командой, ведение документации.</p>
+        <div class="meta">
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>72 акад. часа</span>
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>2 недели</span>
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/></svg>Онлайн</span>
+        </div>
+        <div class="pricerow">
+          <div class="price">9 990 ₽<small>за весь курс</small></div>
+          <a href="#contact" class="btn btn-primary btn-sm" data-program="Куратор лечения: организация и сопровождение пациентского пути">Записаться</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-copy">
+      <span class="eyebrow green">Об организации</span>
+      <h2>АНО ДПО «Энергия заботы и&nbsp;творчества»</h2>
+      <p>Мы — автономная некоммерческая организация дополнительного профессионального образования. Наша миссия — вдохновлять сотрудников медицинских клиник на создание исключительного сервиса.</p>
+      <div class="mission-card">
+        <p class="q">«Забота о пациенте начинается с заботы о команде. Мы соединяем профессиональные знания с творческим подходом к сервису».</p>
+      </div>
+    </div>
+    <div class="values">
+      <div class="value">
+        <span class="vic" style="background:var(--orange-soft);color:var(--orange-deep);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </span>
+        <div><h4>Забота</h4><p>Создаём комфортную и поддерживающую среду обучения для каждого слушателя.</p></div>
+      </div>
+      <div class="value">
+        <span class="vic" style="background:var(--green-soft);color:var(--green-deep);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A6.5 6.5 0 0 0 3 8.5c0 2 1 3.5 2.5 4.8.8.7 1 1.2 1 2.2v.5h6v-.5c0-1 .2-1.5 1-2.2C15 12 16 10.5 16 8.5A6.5 6.5 0 0 0 9.5 2z"/><line x1="6.5" y1="20" x2="12.5" y2="20"/><line x1="7.5" y1="22.5" x2="11.5" y2="22.5"/></svg>
+        </span>
+        <div><h4>Творческий подход</h4><p>Развиваем нестандартное мышление для решения сложных ситуаций в клиентском сервисе.</p></div>
+      </div>
+      <div class="value">
+        <span class="vic" style="background:var(--orange-soft);color:var(--orange-deep);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </span>
+        <div><h4>Энергия результата</h4><p>Даём практические инструменты, которые работают и приносят клинике измеримый результат.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EIOS ============ -->
+<section class="bg-white" id="eios">
+  <div class="wrap">
+    <div class="eios">
+      <div class="eios-inner">
+        <div>
+          <span class="eyebrow">ЭИОС</span>
+          <h2>Электронная информационно-образовательная среда</h2>
+          <p class="lead">Мы используем технологии для создания эффективной и комфортной среды дистанционного обучения, соответствующей требованиям законодательства РФ.</p>
+          <a href="#contact" class="btn btn-primary" style="margin-top:26px;">Получить доступ к демо</a>
+        </div>
+        <div class="eios-feats">
+          <div class="efeat">
+            <div class="ei"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+            <h4>Доступ 24/7</h4>
+            <p>Круглосуточный доступ к учебным материалам и электронной библиотеке.</p>
+          </div>
+          <div class="efeat">
+            <div class="ei"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <h4>Личный кабинет</h4>
+            <p>Индивидуальный кабинет с контролем успеваемости и прогресса.</p>
+          </div>
+          <div class="efeat">
+            <div class="ei"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+            <h4>Вебинары и практика</h4>
+            <p>Интерактивные вебинары и практические задания с обратной связью.</p>
+          </div>
+          <div class="efeat">
+            <div class="ei"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+            <h4>Поддержка кураторов</h4>
+            <p>Оперативная поддержка кураторов и преподавателей на всём пути.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEACHERS ============ -->
+<section id="teachers">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Преподаватели</span>
+      <h2>Практикующие эксперты медицинского бизнеса</h2>
+      <p>Наши преподаватели — действующие руководители клиник с многолетним опытом построения сервиса и эффективных команд.</p>
+    </div>
+    <div class="teach-grid">
+      <article class="teacher">
+        <div class="ph"><img src="assets/ermakova.jpg" alt="Ермакова Эллина" /></div>
+        <div class="body">
+          <div class="name">Ермакова Эллина</div>
+          <div class="role">Генеральный директор стоматологической клиники «Эстетика Дентал»</div>
+          <p class="bio">Эксперт по построению эффективных команд и клиентского сервиса в медицине.</p>
+        </div>
+      </article>
+      <article class="teacher">
+        <div class="ph"><img src="assets/akopyan.jpg" alt="Акопян Асмик" /></div>
+        <div class="body">
+          <div class="name">Акопян Асмик</div>
+          <div class="role">Исполнительный директор стоматологической клиники «Эстетика Дентал»</div>
+          <p class="bio">Эксперт в стратегическом управлении и оптимизации операционной деятельности.</p>
+        </div>
+      </article>
+      <article class="teacher">
+        <div class="ph"><img src="assets/tertyak.jpg" alt="Тертяк Валерия" /></div>
+        <div class="body">
+          <div class="name">Тертяк Валерия</div>
+          <div class="role">Заместитель исполнительного директора стоматологической клиники «Эстетика Дентал»</div>
+          <p class="bio">Специалист по сопровождению пациентского пути и сервисным стандартам клиники.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ СВЕДЕНИЯ ОБ ОБРАЗОВАТЕЛЬНОЙ ОРГАНИЗАЦИИ ============ -->
+<section class="bg-cream" id="svedenia">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow green">Сведения об образовательной организации</span>
+      <h2>Раздел в соответствии с требованиями&nbsp;Рособрнадзора</h2>
+      <p>Структура раздела сформирована согласно Приказу Рособрнадзора № 831 и постановлению Правительства РФ № 1802. Информация публикуется при получении образовательной лицензии.</p>
+    </div>
+    <div class="svedenia-grid">
+      <aside class="sved-aside">
+        <div class="note">
+          <h4>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--orange-deep)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Статус лицензирования
+          </h4>
+          <p>Организация готовится к подаче документов на получение образовательной лицензии в Федеральную службу по надзору в сфере образования и науки.</p>
+          <p class="law">Сведения в подразделах будут дополнены реквизитами лицензии после её получения.</p>
+        </div>
+      </aside>
+      <div class="accordions" id="accordions">
+
+        <div class="acc open">
+          <button class="acc-head"><span class="acc-num">01</span><span class="acc-title">Основные сведения</span><span class="acc-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ink-soft)" stroke-width="2.6" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+          <div class="acc-body">
+            <div class="inner">
+              <table class="req-table">
+                <tr><td>Полное наименование</td><td>Автономная некоммерческая организация дополнительного профессионального образования «Энергия заботы и творчества»</td></tr>
+                <tr><td>Сокращённое наименование</td><td>АНО ДПО «Энергия заботы и творчества»</td></tr>
+                <tr><td>Дата создания</td><td>2024 год</td></tr>
+                <tr><td>Учредитель</td><td>Сведения публикуются в соответствии с уставом организации</td></tr>
+                <tr><td>Юридический адрес</td><td>115580, г. Москва, вн. тер. г. Муниципальный округ Царицыно, ул. Бакинская, д. 15, кв. 72</td></tr>
+                <tr><td>Режим работы</td><td>Пн–Пт, 10:00–19:00 (МСК)</td></tr>
+                <tr><td>Телефон / E-mail</td><td>+7 (495) 123-45-67 · info@energy-care.ru</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc">
+          <button class="acc-head"><span class="acc-num">02</span><span class="acc-title">Структура и органы управления</span><span class="acc-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ink-soft)" stroke-width="2.6" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+          <div class="acc-body"><div class="inner">
+            <p>Управление организацией осуществляется на основе устава. Высший орган управления — Правление. Единоличный исполнительный орган — Директор.</p>
+            <ul>
+              <li>Директор — руководство текущей деятельностью;</li>
+              <li>Педагогический (методический) совет — вопросы организации образовательного процесса;</li>
+              <li>Учебно-методический отдел — разработка и сопровождение программ ДПО.</li>
+            </ul>
+            <p>Положения о структурных подразделениях размещаются в подразделе «Документы».</p>
+          </div></div>
+        </div>
+
+        <div class="acc">
+          <button class="acc-head"><span class="acc-num">03</span><span class="acc-title">Документы</span><span class="acc-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ink-soft)" stroke-width="2.6" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+          <div class="acc-body"><div class="inner">
+            <p>Перечень документов, подлежащих обязательному размещению (будут опубликованы в формате PDF):</p>
+            <ul class="doc-list">
+              <li><a href="#"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>Свидетельство о государственной регистрации АНО<span class="ext">PDF</span></a></li>
+              <li><a href="#"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>Устав организации<span class="ext">PDF</span></a></li>
+              <li><a href="#"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>Лицензия на осуществление образовательной деятельности<span class="ext">в процессе</span></a></li>
+              <li><a href="#"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>Правила внутреннего распорядка обучающихся<span class="ext">PDF</span></a></li>
+              <li><a href="#"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>Положение об оказании платных образовательных услуг<span class="ext">PDF</span></a></li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="acc">
+          <button class="acc-head"><span class="acc-num">04</span><span class="acc-title">Образование</span><span class="acc-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ink-soft)" stroke-width="2.6" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+          <div class="acc-body"><div class="inner">
+            <table class="req-table">
+              <tr><td>Уровень образования</td><td>Дополнительное профессиональное образование</td></tr>
+              <tr><td>Вид программ</td><td>Программы повышения квалификации</td></tr>
+              <tr><td>Форма обучения</td><td>Заочная с применением дистанционных образовательных технологий</td></tr>
+              <tr><td>Язык обучения</td><td>Русский</td></tr>
+              <tr><td>Реализуемые программы</td><td>3 программы повышения квалификации (72–144 акад. ч)</td></tr>
+              <tr><td>Документ по окончании</td><td>Удостоверение о повышении квалификации установленного образца</td></tr>
+            </table>
+          </div></div>
+        </div>
+
+        <div class="acc">
+          <button class="acc-head"><span class="acc-num">05</span><span class="acc-title">Руководство. Педагогический состав</span><span class="acc-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ink-soft)" stroke-width="2.6" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+          <div class="acc-body"><div class="inner">
+            <p>Образовательный процесс обеспечивают практикующие эксперты медицинского бизнеса:</p>
+            <ul>
+              <li><b>Ермакова Эллина</b> — генеральный директор клиники «Эстетика Дентал», эксперт по построению команд и сервиса;</li>
+              <li><b>Акопян Асмик</b> — исполнительный директор клиники «Эстетика Дентал», эксперт по стратегическому управлению;</li>
+              <li><b>Тертяк Валерия</b> — заместитель исполнительного директора клиники «Эстетика Дентал».</li>
+            </ul>
+            <p>Полные сведения о квалификации, преподаваемых дисциплинах и стаже размещаются в табличной форме.</p>
+          </div></div>
+        </div>
+
+        <div class="acc">
+          <button class="acc-head"><span class="acc-num">06</span><span class="acc-title">Материально-техническое обеспечение и ЭИОС</span><span class="acc-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ink-soft)" stroke-width="2.6" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+          <div class="acc-body"><div class="inner">
+            <p>Обучение проводится с применением электронной информационно-образовательной среды (ЭИОС), обеспечивающей:</p>
+            <ul>
+              <li>доступ к учебным материалам и электронной библиотеке 24/7;</li>
+              <li>проведение вебинаров и онлайн-консультаций;</li>
+              <li>фиксацию хода образовательного процесса и результатов промежуточной аттестации;</li>
+              <li>взаимодействие слушателей с преподавателями и кураторами.</li>
+            </ul>
+            <p>Доступ к ЭИОС предоставляется каждому слушателю через индивидуальный личный кабинет.</p>
+          </div></div>
+        </div>
+
+        <div class="acc">
+          <button class="acc-head"><span class="acc-num">07</span><span class="acc-title">Платные образовательные услуги</span><span class="acc-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ink-soft)" stroke-width="2.6" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+          <div class="acc-body"><div class="inner">
+            <p>Образовательные услуги оказываются на платной основе на основании договора об оказании платных образовательных услуг. Стоимость обучения:</p>
+            <ul>
+              <li>«Искусство сервиса: администратор медицинской клиники» — 9 900 ₽;</li>
+              <li>«Управление пациентским опытом и развитие клиники» — 14 900 ₽;</li>
+              <li>«Куратор лечения: организация и сопровождение пациентского пути» — 9 990 ₽.</li>
+            </ul>
+            <p>Образец договора и положение о платных услугах размещаются в подразделе «Документы».</p>
+          </div></div>
+        </div>
+
+        <div class="acc">
+          <button class="acc-head"><span class="acc-num">08</span><span class="acc-title">Доступная среда</span><span class="acc-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ink-soft)" stroke-width="2.6" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+          <div class="acc-body"><div class="inner">
+            <p>Обучение реализуется в дистанционном формате, что обеспечивает доступность образовательных программ для лиц с ограниченными возможностями здоровья. Электронная среда адаптирована для использования на различных устройствах.</p>
+          </div></div>
+        </div>
+
+        <div class="acc">
+          <button class="acc-head"><span class="acc-num">09</span><span class="acc-title">Финансово-хозяйственная деятельность и вакантные места</span><span class="acc-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ink-soft)" stroke-width="2.6" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+          <div class="acc-body"><div class="inner">
+            <p>Образовательная деятельность финансируется за счёт средств от оказания платных образовательных услуг. Финансирование за счёт бюджетных средств не осуществляется, в связи с чем бюджетные (бесплатные) места для приёма не предусмотрены.</p>
+            <p>Приём на программы ДПО осуществляется в течение всего года по мере комплектования групп.</p>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="bg-white" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-info">
+      <span class="eyebrow">Контакты и заявка</span>
+      <h2>Раскройте свою энергию и&nbsp;творчество в&nbsp;сервисе!</h2>
+      <p>Заполните форму, и мы свяжемся с вами для консультации и оформления документов.</p>
+      <div class="contact-cards">
+        <div class="cc">
+          <span class="ci o"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <div><div class="lab">Телефон</div><div class="val">+7 (495) 123-45-67</div></div>
+        </div>
+        <div class="cc">
+          <span class="ci"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+          <div><div class="lab">E-mail</div><div class="val">info@energy-care.ru</div></div>
+        </div>
+        <div class="cc">
+          <span class="ci o"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><div class="lab">Адрес</div><div class="val">г. Москва, ул. Бакинская, д. 15</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <form id="applyForm" novalidate>
+        <h3>Заявка на обучение</h3>
+        <p class="sub">Оставьте контакты — куратор перезвонит в течение рабочего дня.</p>
+        <div class="field" id="f-name">
+          <label>ФИО слушателя <span class="req">*</span></label>
+          <input type="text" name="name" placeholder="Иванова Мария Сергеевна" autocomplete="name" />
+          <div class="err">Пожалуйста, укажите ФИО</div>
+        </div>
+        <div class="field" id="f-phone">
+          <label>Телефон <span class="req">*</span></label>
+          <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" />
+          <div class="err">Введите корректный номер телефона</div>
+        </div>
+        <div class="field" id="f-email">
+          <label>E-mail</label>
+          <input type="email" name="email" placeholder="you@example.com" autocomplete="email" />
+          <div class="err">Проверьте формат e-mail</div>
+        </div>
+        <div class="field" id="f-program">
+          <label>Программа обучения <span class="req">*</span></label>
+          <select name="program">
+            <option value="" disabled selected>Выберите программу</option>
+            <option>Искусство сервиса: администратор медицинской клиники</option>
+            <option>Управление пациентским опытом и развитие клиники</option>
+            <option>Куратор лечения: организация и сопровождение пациентского пути</option>
+            <option>Пока не определился(ась) — нужна консультация</option>
+          </select>
+          <div class="err">Выберите программу обучения</div>
+        </div>
+        <label class="consent">
+          <input type="checkbox" name="consent" />
+          <span>Я согласен(на) на обработку персональных данных в соответствии с политикой конфиденциальности.</span>
+        </label>
+        <button type="submit" class="btn btn-primary">Отправить заявку</button>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <div class="sic"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h3>Заявка отправлена!</h3>
+        <p>Спасибо. Куратор свяжется с вами в ближайшее время для консультации и оформления документов.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="fbrand">
+        <img src="assets/logo.png" alt="АНО ДПО «Энергия заботы и творчества»" />
+        <p>АНО ДПО «Энергия заботы и творчества»</p>
+      </div>
+      <div>
+        <h5>Разделы</h5>
+        <ul>
+          <li><a href="#programs">Программы</a></li>
+          <li><a href="#about">Об организации</a></li>
+          <li><a href="#eios">ЭИОС</a></li>
+          <li><a href="#teachers">Преподаватели</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Сведения</h5>
+        <ul>
+          <li><a href="#svedenia">Основные сведения</a></li>
+          <li><a href="#svedenia">Документы</a></li>
+          <li><a href="#svedenia">Образование</a></li>
+          <li><a href="#contact">Контакты</a></li>
+        </ul>
+      </div>
+      <div class="fcontact">
+        <h5>Реквизиты</h5>
+        <p>ОГРН <b>1247700145000</b></p>
+        <p>ИНН <b>9724179077</b></p>
+        <p>КПП <b>772401001</b></p>
+        <p>г. Москва, ул. Бакинская, д. 15</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 АНО ДПО «Энергия заботы и творчества». Все права защищены.</span>
+      <span>Политика конфиденциальности · Договор оферты</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ MOBILE MENU ============ -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-panel">
+    <button class="mclose" id="mclose" aria-label="Закрыть"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <a href="#programs">Программы</a>
+    <a href="#about">Об организации</a>
+    <a href="#eios">ЭИОС</a>
+    <a href="#teachers">Преподаватели</a>
+    <a href="#svedenia">Сведения об организации</a>
+    <a href="#contact">Контакты</a>
+    <a href="#contact" class="btn btn-primary">Записаться на обучение</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  // header shadow on scroll
+  var header=document.querySelector('header.site');
+  function onScroll(){header.classList.toggle('scrolled',window.scrollY>10);}
+  onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+
+  // mobile menu
+  var mm=document.getElementById('mobileMenu');
+  document.getElementById('burger').addEventListener('click',function(){mm.classList.add('open');});
+  document.getElementById('mclose').addEventListener('click',function(){mm.classList.remove('open');});
+  mm.addEventListener('click',function(e){if(e.target===mm||e.target.tagName==='A')mm.classList.remove('open');});
+
+  // accordions
+  document.querySelectorAll('.acc').forEach(function(acc){
+    var head=acc.querySelector('.acc-head');
+    var body=acc.querySelector('.acc-body');
+    function setMax(){body.style.maxHeight=acc.classList.contains('open')?(body.scrollHeight+'px'):'0px';}
+    if(acc.classList.contains('open'))requestAnimationFrame(setMax);
+    head.addEventListener('click',function(){
+      acc.classList.toggle('open');
+      document.querySelectorAll('.acc.open').forEach(function(o){o.querySelector('.acc-body').style.maxHeight=o.querySelector('.acc-body').scrollHeight+'px';});
+      setMax();
+    });
+  });
+  window.addEventListener('resize',function(){
+    document.querySelectorAll('.acc.open .acc-body').forEach(function(b){b.style.maxHeight=b.scrollHeight+'px';});
+  });
+
+  // scroll spy
+  var links=[].slice.call(document.querySelectorAll('.nav-links a'));
+  var map={};links.forEach(function(a){var id=a.getAttribute('href').slice(1);var s=document.getElementById(id);if(s)map[id]={a:a,s:s};});
+  function spy(){
+    var pos=window.scrollY+140,cur=null;
+    Object.keys(map).forEach(function(id){if(map[id].s.offsetTop<=pos)cur=id;});
+    links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});
+  }
+  spy();window.addEventListener('scroll',spy,{passive:true});
+
+  // reveal elements on scroll
+  var revealItems=[].slice.call(document.querySelectorAll(
+    '.section-head,.prog,.about-copy,.value,.eios,.efeat,.teacher,.sved-aside,.acc,.contact-info,.cc,.form-card'
+  ));
+  revealItems.forEach(function(el,i){
+    el.classList.add('reveal');
+    el.style.setProperty('--delay',Math.min(i%4*.08,.24)+'s');
+  });
+  if('IntersectionObserver' in window){
+    var revealObserver=new IntersectionObserver(function(entries,observer){
+      entries.forEach(function(entry){
+        if(!entry.isIntersecting)return;
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      });
+    },{threshold:.14,rootMargin:'0px 0px -8% 0px'});
+    revealItems.forEach(function(el){revealObserver.observe(el);});
+  }else{
+    revealItems.forEach(function(el){el.classList.add('in-view');});
+  }
+
+  // program -> form prefill
+  document.querySelectorAll('[data-program]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var sel=document.querySelector('select[name=program]');
+      var val=btn.getAttribute('data-program');
+      [].slice.call(sel.options).forEach(function(o){if(o.value===val||o.text===val)sel.value=o.value;});
+      document.getElementById('f-program').classList.remove('invalid');
+    });
+  });
+
+  // form validation
+  var form=document.getElementById('applyForm');
+  function setErr(id,bad){document.getElementById(id).classList.toggle('invalid',bad);}
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=form.name.value.trim();
+    var phone=form.phone.value.trim();
+    var email=form.email.value.trim();
+    var program=form.program.value;
+    var consent=form.consent.checked;
+    var phoneOk=phone.replace(/\D/g,'').length>=10;
+    var emailOk=email===''||/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    setErr('f-name',name.length<2);
+    setErr('f-phone',!phoneOk);
+    setErr('f-email',!emailOk);
+    setErr('f-program',!program);
+    var ok=name.length>=2&&phoneOk&&emailOk&&program&&consent;
+    if(!consent){var c=form.querySelector('.consent');c.style.color='#d62e2e';}
+    if(!ok)return;
+    form.style.display='none';
+    document.getElementById('formSuccess').classList.add('show');
+  });
+  ['name','phone','program'].forEach(function(n){
+    form[n].addEventListener('input',function(){setErr('f-'+n,false);});
+    form[n].addEventListener('change',function(){setErr('f-'+n,false);});
+  });
+  form.consent.addEventListener('change',function(){if(form.consent.checked)form.querySelector('.consent').style.color='';});
+})();
+</script>
+</body>
+</html>
